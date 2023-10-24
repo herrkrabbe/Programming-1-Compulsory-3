@@ -1,5 +1,7 @@
 #pragma once
-class File
+#include "AbstractFolderFile.h"
+
+class File: public AbstractFolderFile
 {
 };
 
