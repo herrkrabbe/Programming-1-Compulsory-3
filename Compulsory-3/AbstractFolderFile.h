@@ -33,10 +33,10 @@ protected:
 	/// <param name="size"></param>
 	/// <param name="name"></param>
 	/// <param name="dateOfCreation"></param>
-	AbstractFolderFile(float size, std::string name, std::string dateOfCreation) {
+	AbstractFolderFile(float size, std::string name) {
 		setSize(size);
 		setName(name);
-		setDateOfCreation(dateOfCreation);
+		setDateOfCreation("temp date");
 	}
 
 public:
@@ -44,7 +44,9 @@ public:
 	/// Get size
 	/// </summary>
 	/// <returns>size</returns>
-	virtual float getSize() = 0;
+	virtual float getSize() {
+		return size;
+	}
 
 	/// <summary>
 	/// Get name
@@ -66,7 +68,7 @@ public:
 	/// Changes name
 	/// </summary>
 	/// <param name="name"></param>
-	void setName(std::string name) {
+	virtual void setName(std::string name) {
 		AbstractFolderFile::name = name;
 	}
 
