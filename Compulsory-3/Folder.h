@@ -46,6 +46,9 @@ public:
 		if (filesSize >= filesSizeMax) {
 			return false;
 		}
+		if (hasFile(name)) {
+			return false;
+		}
 		files[filesSize] = File(name);
 		filesSize++;
 		return true;
@@ -58,6 +61,9 @@ public:
 	/// <returns>true if succeed, false if failed</returns>
 	bool newFolder(std::string name) {
 		if (foldersSize >= foldersSizeMax) {
+			return false;
+		}
+		if (hasFolder(name)) {
 			return false;
 		}
 		folders[foldersSize] = Folder(name);
@@ -79,6 +85,44 @@ public:
 			throw std::out_of_range(message.str());
 		}
 		return files[index];
+	}
+
+	/// <summary>
+	/// Get the file with the name.
+	/// throws exception with string "No such name" if the name is not stored.
+	/// </summary>
+	/// <param name="index"></param>
+	/// <returns>file</returns>
+	File getFile(std::string name) {
+		if (!hasFile(name)) {
+			throw std::exception("No such name");
+		}
+		int index;
+		for (int i = 0; i < filesSize; i++) {
+			if (name._Equal(files[i].getName())) {
+				index = i;
+			}
+		}
+		return files[index];
+	}
+
+	/// <summary>
+	/// Get the folder with the name.
+	/// throws exception with string "No such name" if the name is not stored.
+	/// </summary>
+	/// <param name="index"></param>
+	/// <returns>folder</returns>
+	Folder getFolder(std::string name) {
+		if (!hasFolder(name)) {
+			throw std::exception("No such name");
+		}
+		int index;
+		for (int i = 0; i < foldersSize; i++) {
+			if (name._Equal(folders[i].getName())) {
+				index = i;
+			}
+		}
+		return folders[index];
 	}
 
 	/// <summary>
