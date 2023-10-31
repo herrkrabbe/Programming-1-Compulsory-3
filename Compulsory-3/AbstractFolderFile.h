@@ -1,6 +1,13 @@
 #pragma once
+#pragma warning(disable : 4996)
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
+
 class AbstractFolderFile
 {
 private:
@@ -17,13 +24,7 @@ private:
 		AbstractFolderFile::dateOfCreation = dateOfCreation;
 	}
 
-	/// <summary>
-	/// Sets size of object
-	/// </summary>
-	/// <param name="size"></param>
-	void setSize(float size) {
-		AbstractFolderFile::size = size;
-	}
+	
 
 protected:
 	
@@ -33,10 +34,26 @@ protected:
 	/// <param name="size"></param>
 	/// <param name="name"></param>
 	/// <param name="dateOfCreation"></param>
-	AbstractFolderFile(float size, std::string name) {
+	AbstractFolderFile(std::string name, float size) {
 		setSize(size);
 		setName(name);
-		setDateOfCreation("temp date");
+
+		//source https://stackoverflow.com/a/16358111
+		auto t = std::time(nullptr);
+		auto tm = *std::localtime(&t);
+
+		std::ostringstream oss;
+		oss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+		auto str = oss.str();
+
+		setDateOfCreation(str);
+	}
+	/// <summary>
+	/// Sets size of object
+	/// </summary>
+	/// <param name="size"></param>
+	void setSize(float size) {
+		AbstractFolderFile::size = size;
 	}
 
 public:
