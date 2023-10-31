@@ -1,10 +1,14 @@
 
 #include "File.h"
+#include "Folder.h"
 
 void main() {
 	srand((unsigned int)time(NULL));
 	File foo1 = File("Test");
 	File foo2 = File("Test2");
+	{
+		Folder fold = Folder("Folder1");
+	}
 	File foo3 = File("Test3");
 	File foo4 = File("Test4", 5);
 	File foo5 = File("Test4", 5);

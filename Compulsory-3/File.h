@@ -4,7 +4,15 @@
 
 class File: public AbstractFolderFile
 {
+
 public:
+	/// <summary>
+	/// DEfault constructor used ONLY by Folder. DO NOT USE
+	/// </summary>
+	File() : AbstractFolderFile("", 0) {
+
+	}
+
 	File(std::string name, float size) : AbstractFolderFile(name, size) {
 	}
 
