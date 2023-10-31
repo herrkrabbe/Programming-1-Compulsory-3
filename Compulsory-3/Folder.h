@@ -78,7 +78,7 @@ public:
 			
 			throw std::out_of_range(message.str());
 		}
-		//TODO
+		return files[index];
 	}
 
 	/// <summary>
@@ -94,7 +94,35 @@ public:
 
 			throw std::out_of_range(message.str());
 		}
-		//TODO
+		return folders[index];
+	}
+
+	/// <summary>
+	/// checks if folder has file name
+	/// </summary>
+	/// <param name="name"></param>
+	/// <returns></returns>
+	bool hasFile(std::string name) {
+		for (int i = 0; i < filesSize; i++) {
+			if (name._Equal(files[i].getName())) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	/// <summary>
+	/// checks if folder has folder name
+	/// </summary>
+	/// <param name="name"></param>
+	/// <returns></returns>
+	bool hasFolder(std::string name) {
+		for (int i = 0; i < foldersSize; i++) {
+			if (name._Equal(folders[i].getName())) {
+				return 1;
+			}
+		}
+		return 0;
 	}
 };
 
