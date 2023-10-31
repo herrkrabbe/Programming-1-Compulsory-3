@@ -72,6 +72,12 @@ public:
 	/// <param name="index"></param>
 	/// <returns></returns>
 	File getFile(int index) {
+		if (!(index >= 0 && index < 5)) {
+			std::ostringstream message;
+			message << "Index was " << index << ". Array size is " << filesSize << ". Expected between inclusive 0 and exclusive " << filesSize;
+			
+			throw std::out_of_range(message.str());
+		}
 		//TODO
 	}
 
@@ -82,6 +88,12 @@ public:
 	/// <param name="index"></param>
 	/// <returns></returns>
 	Folder getFolder(int index) {
+		if (!(index >= 0 && index < 5)) {
+			std::ostringstream message;
+			message << "Index was " << index << ". Array size is " << foldersSize << ". Expected between inclusive 0 and exclusive " << foldersSize;
+
+			throw std::out_of_range(message.str());
+		}
 		//TODO
 	}
 };
