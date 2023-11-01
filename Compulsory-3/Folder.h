@@ -24,7 +24,7 @@ private:
 	/// <returns>true if success</returns>
 	bool openFolder() {
 		if (foldersSize == 0) {
-			return 0;
+			return false;
 		}
 		bool isRunning = true;
 		std::string name;
@@ -52,7 +52,7 @@ private:
 	/// <returns>true if success</returns>
 	bool openFile() {
 		if (filesSize == 0) {
-			return 0;
+			return false;
 		}
 		bool isRunning = true;
 		std::string name;
@@ -77,10 +77,10 @@ private:
 	/// <summary>
 	/// Helper function to make folder
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>true if success</returns>
 	bool makeFolder() {
 		if (foldersSize >= foldersSizeMax) {
-			return 0;
+			return false;
 		}
 		bool isRunning = true;
 		std::string name;
@@ -105,9 +105,29 @@ private:
 	/// <summary>
 	/// Helper function to make file
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>true if success</returns>
 	bool makeFile() {
+		if (filesSize >= filesSizeMax) {
+			return false;
+		}
+		bool isRunning = true;
+		std::string name;
+		while (isRunning) {
+			std::cout << "Type the name of the file you want to make, or EXIT to go back\n";
 
+			std::cin >> name;
+			if (name._Equal("EXIT")) {
+				isRunning = false;
+			}
+			else if (!hasFile(name)) {
+				isRunning = false;
+				addFile(name);
+			}
+			else {
+				std::cout << "File with name already exists\n";
+			}
+		}
+		return true;
 	}
 
 public:
