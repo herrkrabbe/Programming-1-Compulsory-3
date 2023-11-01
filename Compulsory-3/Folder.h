@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractFolderFile.h"
 #include "File.h"
+#include "Input.h"
 
 class Folder: public AbstractFolderFile
 {
@@ -213,8 +214,39 @@ public:
 	/// <summary>
 	/// Function to operate files
 	/// </summary>
-	void operateFolder() {
+	bool operateFolder() {
+		bool isRunning = true;
+		int input = 0;
+		std::ostringstream commands;
+		while (isRunning) {
+			//cleaning stream
+			commands.str("");
+			commands.clear();
 
+			commands << "IN: " << Folder::getName() << std::endl <<
+				"Enter integer to perform correspongding action.\n" <<
+				"1: ls\n2: cd Folder\n3: cd File\n4: Display largest File\n5: EXIT";
+			input = inputInt();
+			switch (input) {
+			case 1:
+				Folder::print();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				Folder::getFileLargest().print();
+				break;
+			case 5:
+				isRunning = false;
+				break;
+			default:
+
+			}
+
+		}
+		return true;
 	}
 };
 
