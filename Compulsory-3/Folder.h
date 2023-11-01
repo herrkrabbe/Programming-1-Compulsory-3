@@ -242,7 +242,7 @@ public:
 				isRunning = false;
 				break;
 			default:
-
+				break;
 			}
 
 		}
