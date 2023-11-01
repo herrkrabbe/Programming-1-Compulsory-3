@@ -29,7 +29,7 @@ private:
 		bool isRunning = true;
 		std::string name;
 		while (isRunning) {
-			std::cout << "Type the name of the file you want to open, or EXIT to go back\n";
+			std::cout << "Type the name of the folder you want to open, or EXIT to go back\n";
 			
 			std::cin >> name;
 			if (name._Equal("EXIT")) {
@@ -40,7 +40,7 @@ private:
 				getFolder(name).operateFolder();
 			}
 			else {
-				std::cout << "No file with that name\n";
+				std::cout << "No folder with that name\n";
 			}
 		}
 		return true;
@@ -72,6 +72,42 @@ private:
 			}
 		}
 		return true;
+	}
+
+	/// <summary>
+	/// Helper function to make folder
+	/// </summary>
+	/// <returns></returns>
+	bool makeFolder() {
+		if (foldersSize >= foldersSizeMax) {
+			return 0;
+		}
+		bool isRunning = true;
+		std::string name;
+		while (isRunning) {
+			std::cout << "Type the name of the folder you want to make, or EXIT to go back\n";
+
+			std::cin >> name;
+			if (name._Equal("EXIT")) {
+				isRunning = false;
+			}
+			else if (!hasFolder(name)) {
+				isRunning = false;
+				addFolder(name);
+			}
+			else {
+				std::cout << "Folder with name already exists\n";
+			}
+		}
+		return true;
+	}
+
+	/// <summary>
+	/// Helper function to make file
+	/// </summary>
+	/// <returns></returns>
+	bool makeFile() {
+
 	}
 
 public:
@@ -281,7 +317,7 @@ public:
 
 			commands << "IN: " << Folder::getName() << std::endl <<
 				"Enter integer to perform correspongding action.\n" <<
-				"1: ls\n2: cd Folder\n3: cd File\n4: Display largest File\n5: EXIT";
+				"1: ls\n2: cd Folder\n3: cd File\n4: make Folder\n5: Make File\n6: Display largest File\n7: EXIT";
 			std::cout << commands.str();
 			input = inputInt();
 
@@ -296,9 +332,15 @@ public:
 				openFile();
 				break;
 			case 4:
-				Folder::getFileLargest().print();
+				makeFolder();
 				break;
 			case 5:
+				makeFile();
+				break;
+			case 6:
+				Folder::getFileLargest().print();
+				break;
+			case 7:
 				isRunning = false;
 				break;
 			default:
