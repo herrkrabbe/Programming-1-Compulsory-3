@@ -35,14 +35,35 @@ public:
 	// Inherited via AbstractFolderFile
 	//TODO
 	std::string toString() override{
-		return std::string();
+		std::ostringstream message;
+
+		//stream with folder names and index
+		message << "Folders:\n";
+		if (foldersSize == 0) {
+			message << "NO FOLDERS\n";
+		}
+		for (int i = 0; i < foldersSize; i++) {
+			message << i<< ". Name: " << folders[i].getName() << ". Size: " << folders[i].getSize() << " MB. Created: " << folders[i].getDateOfCreation() << ".\n";
+		}
+
+		//stream with file index and information
+		message << "\nFiles:\n";
+		if (filesSize == 0) {
+			message << "NO FILES\n";
+		}
+		for (int i = 0; i < filesSize; i++) {
+			message << i << ". Name: " << files[i].getName() << ". Size: " << files[i].getSize() << " MB. Created: " << files[i].getDateOfCreation() << ".\n";
+		}
+
+		//return
+		return message.str();
 	}
 
 	/// <summary>
 	/// Creates a new file if this folder has capacity.
 	/// </summary>
 	/// <returns>true if succeed, false if failed</returns>
-	bool newFile(std::string name) {
+	bool addFile(std::string name) {
 		if (filesSize >= filesSizeMax) {
 			return false;
 		}
@@ -59,7 +80,7 @@ public:
 	/// Creates a new folder if this folder has capacity.
 	/// </summary>
 	/// <returns>true if succeed, false if failed</returns>
-	bool newFolder(std::string name) {
+	bool addFolder(std::string name) {
 		if (foldersSize >= foldersSizeMax) {
 			return false;
 		}
