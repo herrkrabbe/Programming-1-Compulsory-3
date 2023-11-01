@@ -19,14 +19,18 @@ void main() {
 	std::cout << foo4.toString() << "\n";
 	std::cout << foo5.toString() << "\n";
 
-	fold.addFile("File 1");
-	fold.addFile("File 2");
+	fold.addFile("File1");
+	fold.addFile("File2");
 
-	fold.addFolder("Folder 1");
+	fold.addFolder("Folder1");
 
 	fold.print();
 
 	fold.getFileLargest().print();
+
+	std::cout << std::endl;
+
+	fold.operateFolder();
 
 
 	

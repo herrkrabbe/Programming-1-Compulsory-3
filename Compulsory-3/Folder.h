@@ -335,9 +335,9 @@ public:
 			commands.str("");
 			commands.clear();
 
-			commands << "IN: " << Folder::getName() << std::endl <<
+			commands << "---\nIN: " << Folder::getName() << std::endl <<
 				"Enter integer to perform correspongding action.\n" <<
-				"1: ls\n2: cd Folder\n3: cd File\n4: make Folder\n5: Make File\n6: Display largest File\n7: EXIT";
+				"1: ls\n2: cd Folder\n3: cd File\n4: make Folder\n5: Make File\n6: Display largest File\n7: EXIT\n---\n";
 			std::cout << commands.str();
 			input = inputInt();
 
@@ -364,11 +364,12 @@ public:
 				isRunning = false;
 				break;
 			default:
-				std::cout << "Invalid integer";
+				std::cout << "Invalid integer\n";
 				break;
 			}
 
 		}
+		return true;
 	}
 };
 

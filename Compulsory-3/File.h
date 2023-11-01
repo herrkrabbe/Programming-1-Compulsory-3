@@ -35,7 +35,7 @@ public:
 	/// <summary>
 	/// Function which enables interfacing the file.
 	/// </summary>
-	void operateFile() {
+	bool operateFile() {
 		bool isRunning = true;
 		int input = 0;
 		std::ostringstream commands;
@@ -44,9 +44,9 @@ public:
 			commands.str("");
 			commands.clear();
 
-			commands << "IN: " << File::getName() << std::endl <<
+			commands << "---\nIN: " << File::getName() << std::endl <<
 				"Enter integer to perform correspongding action.\n" <<
-				"1: print\n2: EXIT\n";
+				"1: print\n2: EXIT\n---\n";
 			std::cout << commands.str();
 			input = inputInt();
 
@@ -58,10 +58,11 @@ public:
 				isRunning = false;
 				break;
 			default:
-				std::cout << "Invalid integer";
+				std::cout << "Invalid integer\n";
 				break;
 			}
 		}
+		return true;
 	}
 };
 
