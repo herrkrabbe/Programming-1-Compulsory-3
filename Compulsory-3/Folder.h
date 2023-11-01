@@ -55,6 +55,23 @@ private:
 			return 0;
 		}
 		bool isRunning = true;
+		std::string name;
+		while (isRunning) {
+			std::cout << "Type the name of the file you want to open, or EXIT to go back\n";
+
+			std::cin >> name;
+			if (name._Equal("EXIT")) {
+				isRunning = false;
+			}
+			else if (hasFile(name)) {
+				isRunning = false;
+				getFile(name).operateFile();
+			}
+			else {
+				std::cout << "No file with that name\n";
+			}
+		}
+		return true;
 	}
 
 public:
@@ -73,8 +90,7 @@ public:
 		delete[] folders;
 		delete[] files;
 	}
-	// Inherited via AbstractFolderFile
-	//TODO
+
 	std::string toString() override{
 		std::ostringstream message;
 
@@ -291,7 +307,6 @@ public:
 			}
 
 		}
-		return true;
 	}
 };
 

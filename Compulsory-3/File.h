@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractFolderFile.h"
 #include <sstream>
+#include "Input.h"
 
 class File: public AbstractFolderFile
 {
@@ -23,12 +24,44 @@ public:
 		setSize(size);
 	}
 
-	//TODO
+	
 	std::string toString(){
 		std::ostringstream str;
 		str << "name: " << getName() << ".  Size: " << getSize() << " MB.  Date of Creation: " << getDateOfCreation();
 	
 		return std::string(str.str());
+	}
+
+	/// <summary>
+	/// Function which enables interfacing the file.
+	/// </summary>
+	void operateFile() {
+		bool isRunning = true;
+		int input = 0;
+		std::ostringstream commands;
+		while (isRunning) {
+			//cleaning stream
+			commands.str("");
+			commands.clear();
+
+			commands << "IN: " << File::getName() << std::endl <<
+				"Enter integer to perform correspongding action.\n" <<
+				"1: print\n2: EXIT\n";
+			std::cout << commands.str();
+			input = inputInt();
+
+			switch (input) {
+			case 1:
+				print();
+				break;
+			case 2:
+				isRunning = false;
+				break;
+			default:
+				std::cout << "Invalid integer";
+				break;
+			}
+		}
 	}
 };
 
