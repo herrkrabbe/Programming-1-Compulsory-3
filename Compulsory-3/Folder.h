@@ -17,6 +17,46 @@ private:
 		folders = NULL;
 		files = NULL;
 	}
+
+	/// <summary>
+	/// Helper function to open new folder
+	/// </summary>
+	/// <returns>true if success</returns>
+	bool openFolder() {
+		if (foldersSize == 0) {
+			return 0;
+		}
+		bool isRunning = true;
+		std::string name;
+		while (isRunning) {
+			std::cout << "Type the name of the file you want to open, or EXIT to go back\n";
+			
+			std::cin >> name;
+			if (name._Equal("EXIT")) {
+				isRunning = false;
+			}
+			else if (hasFolder(name)) {
+				isRunning = false;
+				getFolder(name).operateFolder();
+			}
+			else {
+				std::cout << "No file with that name\n";
+			}
+		}
+		return true;
+	}
+
+	/// <summary>
+	/// Helper function to open new file
+	/// </summary>
+	/// <returns>true if success</returns>
+	bool openFile() {
+		if (filesSize == 0) {
+			return 0;
+		}
+		bool isRunning = true;
+	}
+
 public:
 	Folder(std::string name) : AbstractFolderFile(name, 0) {
 		//rand() is seeded in main
@@ -226,14 +266,18 @@ public:
 			commands << "IN: " << Folder::getName() << std::endl <<
 				"Enter integer to perform correspongding action.\n" <<
 				"1: ls\n2: cd Folder\n3: cd File\n4: Display largest File\n5: EXIT";
+			std::cout << commands.str();
 			input = inputInt();
+
 			switch (input) {
 			case 1:
 				Folder::print();
 				break;
 			case 2:
+				openFolder();
 				break;
 			case 3:
+				openFile();
 				break;
 			case 4:
 				Folder::getFileLargest().print();
@@ -242,6 +286,7 @@ public:
 				isRunning = false;
 				break;
 			default:
+				std::cout << "Invalid integer";
 				break;
 			}
 

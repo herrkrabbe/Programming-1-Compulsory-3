@@ -7,7 +7,7 @@
 /// Recursively calls itself if the user enters an invalid input
 /// </summary>
 /// <returns></returns>
-int inputInt() {
+static int inputInt() {
 	int input;
 	std::cin >> input;
 	if (std::cin.fail()) {
