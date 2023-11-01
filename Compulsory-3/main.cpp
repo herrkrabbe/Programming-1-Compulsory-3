@@ -26,6 +26,8 @@ void main() {
 
 	fold.print();
 
+	fold.getFileLargest().print();
+
 
 	
 }

@@ -189,5 +189,25 @@ public:
 		}
 		return 0;
 	}
+
+	/// <summary>
+	/// Gets the stored file with largest size.
+	/// 
+	/// throws exception with string "Folder has no files" if the folder
+	/// holds no files
+	/// </summary>
+	/// <returns>largest file</returns>
+	File getFileLargest() {
+		if (filesSize == 0) {
+			throw std::exception("Folder has no files");
+		}
+		int indexLargest = 0;
+		for (int i = 0; i < filesSize; i++) {
+			if (files[indexLargest].getSize() < files[i].getSize()) {
+				indexLargest = i;
+			}
+		}
+		return files[indexLargest];
+	}
 };
 
