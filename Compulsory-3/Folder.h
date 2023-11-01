@@ -209,5 +209,12 @@ public:
 		}
 		return files[indexLargest];
 	}
+
+	/// <summary>
+	/// Function to operate files
+	/// </summary>
+	void operateFolder() {
+
+	}
 };
 
